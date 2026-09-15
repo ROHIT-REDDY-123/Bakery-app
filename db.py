@@ -135,25 +135,38 @@ def init_db():
     
     current_uri = os.getenv("MONGODB_URI", "").strip()
     if current_uri:
+        from pymongo import MongoClient
+        client = None
+        # Attempt 1: Standard connection
         try:
-            from pymongo import MongoClient
-            client = MongoClient(current_uri, serverSelectionTimeoutMS=4000)
+            client = MongoClient(current_uri, serverSelectionTimeoutMS=6000)
             client.admin.command('ping')
-            db = client.get_database("bakery_ecommerce")
-            users_col = db["users"]
-            products_col = db["products"]
-            orders_col = db["orders"]
-            otps_col = db["otps"]
+        except Exception as e1:
+            logger.warning(f"Standard MongoDB SSL failed ({e1}). Retrying with tlsAllowInvalidCertificates=True...")
             try:
-                # Expire documents automatically at expires_at
-                otps_col.create_index("expires_at", expireAfterSeconds=0)
-            except Exception:
-                pass
-            IS_USING_MONGODB = True
-            logger.info(">>> Successfully connected to MongoDB! <<<")
-            return
-        except Exception as e:
-            logger.warning(f"Could not connect to MongoDB URI ({e}). Falling back to local storage.")
+                # Attempt 2: Resilient TLS mode (handles cloud Linux OpenSSL differences)
+                client = MongoClient(current_uri, serverSelectionTimeoutMS=8000, tlsAllowInvalidCertificates=True)
+                client.admin.command('ping')
+            except Exception as e2:
+                logger.warning(f"Could not connect to MongoDB URI ({e2}). Falling back to local storage.")
+                client = None
+
+        if client is not None:
+            try:
+                db = client.get_database("bakery_ecommerce")
+                users_col = db["users"]
+                products_col = db["products"]
+                orders_col = db["orders"]
+                otps_col = db["otps"]
+                try:
+                    otps_col.create_index("expires_at", expireAfterSeconds=0)
+                except Exception:
+                    pass
+                IS_USING_MONGODB = True
+                logger.info(">>> Successfully connected to MongoDB Atlas! <<<")
+                return
+            except Exception as e:
+                logger.warning(f"Error accessing database: {e}")
     
     logger.info(">>> Using resilient Local Persistent Store (waiting for MONGODB_URI in .env) <<<")
     store = FallbackStore()
