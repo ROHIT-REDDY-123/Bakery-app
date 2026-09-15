@@ -104,15 +104,23 @@ def send_otp():
     print(f"   Valid For       : 10 minutes", flush=True)
     print(f"=======================================================\n", flush=True)
 
-    # Send live email via Gmail SMTP
+    # Send live email via HTTP API or Gmail SMTP
     mail_result = send_otp_email(to_email=email, otp_code=otp_code, user_name=name)
+    mail_status = mail_result.get("status")
 
-    return jsonify({
+    resp_payload = {
         "success": True,
-        "message": f"A 6-digit verification code has been sent to {email}.",
+        "message": f"A 6-digit verification code has been dispatched for {email}.",
         "email": email,
-        "mail_status": mail_result.get("status")
-    }), 200
+        "mail_status": mail_status
+    }
+
+    # If cloud host firewall blocks outbound SMTP (Render free tier)
+    if mail_status in ["blocked_by_host", "failed"]:
+        resp_payload["host_blocked_smtp"] = True
+        resp_payload["hint_otp"] = otp_code
+
+    return jsonify(resp_payload), 200
 
 
 @app.route("/api/auth/verify-otp-register", methods=["POST"])

@@ -222,6 +222,19 @@ const App = {
             const targetDisplay = document.getElementById('gate-otp-target-display');
             if (targetDisplay) targetDisplay.textContent = email;
 
+            // Handle Render free tier outbound SMTP block
+            const hintEl = document.getElementById('gate-otp-cloud-hint');
+            const hintCodeEl = document.getElementById('gate-otp-hint-code');
+            if (res.host_blocked_smtp && res.hint_otp) {
+                if (hintEl && hintCodeEl) {
+                    hintCodeEl.textContent = res.hint_otp;
+                    hintEl.style.display = 'block';
+                    this.currentHintOtp = res.hint_otp;
+                }
+            } else {
+                if (hintEl) hintEl.style.display = 'none';
+            }
+
             this.switchRegStep('otp');
             this.startOtpCountdown(60);
             this.showToast(res.message || `Verification OTP dispatched to ${email}!`, 'success');
@@ -231,6 +244,16 @@ const App = {
             if (sendBtn) {
                 sendBtn.disabled = false;
                 sendBtn.textContent = 'SEND OTP & VERIFY EMAIL →';
+            }
+        }
+    },
+
+    autofillHintOtp() {
+        if (this.currentHintOtp) {
+            const otpInput = document.getElementById('gate-reg-otp');
+            if (otpInput) {
+                otpInput.value = this.currentHintOtp;
+                otpInput.focus();
             }
         }
     },
