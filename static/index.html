@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="description" content="The Artisan Drop - Premium Bakery E-Commerce app. Sourdough, Viennoiserie, and Artisan Pastries fresh out of the oven.">
+    <title>THE ARTISAN DROP | Artisan Bakery E-Commerce</title>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="device-wrapper">
+    <!-- View Switcher & Live Database Status -->
+    <div class="view-controls">
+        <button id="btn-phone-view" class="view-toggle-btn active">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="3" ry="3"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            Android View
+        </button>
+        <button id="btn-full-view" class="view-toggle-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            Full Screen
+        </button>
+        <div id="db-status-pill" class="db-pill fallback">
+            <span style="width: 6px; height: 6px; border-radius: 50%; background: #f59e0b;"></span>
+            Connecting...
+        </div>
+    </div>
+
+    <!-- Android Mobile Container Shell -->
+    <div id="android-container" class="android-phone">
+        
+        <!-- Android Hardware Status Bar -->
+        <div class="android-status-bar">
+            <span id="android-clock">12:00</span>
+            <div class="status-camera-cutout"></div>
+            <div class="status-icons">
+                <!-- 5G / Wifi Icon -->
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+                <!-- Battery Icon -->
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="16" height="10" rx="2" ry="2"/><line x1="22" y1="11" x2="22" y2="13"/><rect x="4" y="9" width="10" height="6" fill="currentColor"/></svg>
+            </div>
+        </div>
+
+        <!-- App Brand Header -->
+        <header class="app-header">
+            <div class="brand-badge-container">
+                <span class="brand-sup">🌾 100% PURE FARM INGREDIENTS // BENGALURU</span>
+                <h1 class="brand-title">THE ARTISAN DROP</h1>
+                <span style="font-size: 9.5px; color: var(--accent-gold); font-weight: 700; letter-spacing: 0.5px; display: block; margin-top: 1px;">ARTISAN BAKERY & FARM-FRESH INGREDIENTS STORE</span>
+            </div>
+            <div class="header-actions">
+                <button id="btn-open-bag" class="header-icon-btn" title="Open Hot Bag">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    <span id="bag-badge-count" class="bag-badge" style="display: none;">0</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="app-content">
+
+            <!-- VIEW 1: SHOP / STORE -->
+            <section id="view-shop" class="view-section active">
+                
+                <!-- Warm Bakery Banner -->
+                <div class="hero-banner">
+                    <span class="hero-tag">🔥 Morning Batch 06:00 AM // Pure Ingredients</span>
+                    <h2 class="hero-title">FARM-FRESH ARTISAN BAKES</h2>
+                    <p class="hero-desc">Crafted with 100% Organic Stoneground Flour, Normandy AOP Butter, 24h Wild Sourdough Culture & Valrhona Cacao.</p>
+                </div>
+
+                <!-- Farm-Fresh Ingredients Highlight Bar -->
+                <div class="ingredients-ticker">
+                    <span class="ingredient-chip">🌾 Stoneground Flour</span>
+                    <span class="ingredient-chip">🧈 Normandy Butter</span>
+                    <span class="ingredient-chip">🌿 24h Wild Starter</span>
+                    <span class="ingredient-chip">🍫 Valrhona Cacao</span>
+                    <span class="ingredient-chip">🌱 Zero Additives</span>
+                </div>
+
+                <!-- Instant Search Bar -->
+                <div class="search-container" style="position: relative;">
+                    <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <input type="search" id="product-search" name="bakery_search_filter" class="search-input" placeholder="Search bakes, fresh sourdough, butter pastries..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+                    <button type="button" id="product-search-clear" class="search-clear-btn" style="display: none;" onclick="App.clearProductSearch()">✕</button>
+                </div>
+
+                <!-- Category Chips -->
+                <div class="category-scroll">
+                    <button class="cat-chip active" data-cat="all">ALL BAKES</button>
+                    <button class="cat-chip" data-cat="Sourdough">SOURDOUGH & BREADS</button>
+                    <button class="cat-chip" data-cat="Viennoiserie">VIENNOISERIE</button>
+                    <button class="cat-chip" data-cat="Cakes">ARTISAN CAKES</button>
+                    <button class="cat-chip" data-cat="Savory">SAVORY & SPECIALS</button>
+                </div>
+
+                <!-- Products Grid -->
+                <div id="product-grid" class="product-grid">
+                    <!-- Loaded dynamically via app.js -->
+                </div>
+            </section>
+
+            <!-- VIEW 2: ADMIN ORDERS & DELIVERY MANAGEMENT -->
+            <section id="view-admin" class="view-section">
+                <div style="margin-bottom: 16px;">
+                    <span style="font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-gold);">🌾 FARM-FRESH INGREDIENTS & ARTISAN STORE</span>
+                    <h2 style="font-family: var(--font-heading); font-size: 21px; font-weight: 800; color: #fff;">STORE OWNER & BATCH MANAGER</h2>
+                </div>
+
+                <!-- 4 Clickable Tally Cards (All tallied with total orders) -->
+                <div class="admin-metrics">
+                    <div id="card-tally-all" class="metric-card" onclick="AdminManager.filterOrders('all')" title="Click to view all orders">
+                        <div id="tally-total-count" class="metric-num">0</div>
+                        <div class="metric-label">Total Orders</div>
+                        <div id="tally-total-rev" class="metric-sub">₹0.00 total</div>
+                    </div>
+                    <div id="card-tally-progress" class="metric-card active-filter" onclick="AdminManager.filterOrders('In Progress')" title="Click to view active orders">
+                        <div id="tally-progress-count" class="metric-num" style="color: var(--accent-gold-light);">0</div>
+                        <div class="metric-label">⏳ In Progress</div>
+                        <div id="tally-progress-rev" class="metric-sub">₹0.00 active</div>
+                    </div>
+                    <div id="card-tally-outofstock" class="metric-card" onclick="AdminManager.filterOrders('Out of Stock')" title="Click to view out of stock orders">
+                        <div id="tally-outofstock-count" class="metric-num" style="color: var(--accent-red);">0</div>
+                        <div class="metric-label">⚠️ Out of Stock</div>
+                        <div class="metric-sub">Restock needed</div>
+                    </div>
+                    <div id="card-tally-finished" class="metric-card" onclick="AdminManager.filterOrders('Finished')" title="Click to view finished orders">
+                        <div id="tally-finished-count" class="metric-num" style="color: var(--accent-green);">0</div>
+                        <div class="metric-label">✅ Finished</div>
+                        <div id="tally-finished-rev" class="metric-sub">₹0.00 done</div>
+                    </div>
+                </div>
+
+                <!-- Orders View (Owner Primary View) -->
+                <div id="admin-orders-view">
+                    <!-- Status Filter Chips -->
+                    <div class="order-filter-chips">
+                        <button class="order-filter-pill active" data-filter="In Progress" onclick="AdminManager.filterOrders('In Progress')">⏳ In Progress</button>
+                        <button class="order-filter-pill" data-filter="Out of Stock" onclick="AdminManager.filterOrders('Out of Stock')">⚠️ Out of Stock</button>
+                        <button class="order-filter-pill" data-filter="Finished" onclick="AdminManager.filterOrders('Finished')">✅ Finished (Archive)</button>
+                        <button class="order-filter-pill" data-filter="all" onclick="AdminManager.filterOrders('all')">📋 All Orders</button>
+                    </div>
+
+                    <div id="admin-orders-list">
+                        <!-- Loaded dynamically via admin.js -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- VIEW 3: DEDICATED LIVE STOCK MANAGEMENT (Category-Wise) -->
+            <section id="view-stock" class="view-section">
+                <div style="margin-bottom: 14px;">
+                    <span style="font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-gold);">OVEN INVENTORY CONTROL</span>
+                    <h2 style="font-family: var(--font-heading); font-size: 21px; font-weight: 800; color: #fff;">LIVE STOCK MANAGER</h2>
+                    <p style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">Edit bakery item stock in real time. Items at 0 will show OUT OF STOCK across the store.</p>
+                </div>
+
+                <!-- Search within Stock -->
+                <div class="search-container" style="margin-bottom: 12px;">
+                    <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <input type="search" id="admin-stock-search" name="admin_stock_filter" class="search-input" placeholder="Search bakery item to edit stock..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+                </div>
+
+                <!-- Category Chips in Stock View (Exact same categories as customer UI) -->
+                <div class="category-scroll" id="stock-category-scroll" style="margin-bottom: 14px;">
+                    <button class="cat-chip stock-chip active" data-stock-cat="all">ALL BAKES</button>
+                    <button class="cat-chip stock-chip" data-stock-cat="Sourdough">SOURDOUGH & BREADS</button>
+                    <button class="cat-chip stock-chip" data-stock-cat="Viennoiserie">VIENNOISERIE</button>
+                    <button class="cat-chip stock-chip" data-stock-cat="Cakes">ARTISAN CAKES</button>
+                    <button class="cat-chip stock-chip" data-stock-cat="Savory">SAVORY & SPECIALS</button>
+                </div>
+
+                <!-- Stock Products List -->
+                <div id="admin-products-list" class="admin-stock-grid">
+                    <!-- Loaded dynamically via admin.js -->
+                </div>
+            </section>
+
+            <!-- VIEW 4: DEDICATED USERS & ROLE PERMISSIONS MANAGEMENT -->
+            <section id="view-users" class="view-section">
+                <div style="margin-bottom: 14px;">
+                    <span style="font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-gold);">STORE ACCESS & ROLES</span>
+                    <h2 style="font-family: var(--font-heading); font-size: 21px; font-weight: 800; color: #fff;">REGISTERED USERS</h2>
+                    <p style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">View customer accounts and promote or demote any user to Store Admin directly.</p>
+                </div>
+
+                <!-- Search Users -->
+                <div class="search-container" style="margin-bottom: 14px;">
+                    <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <input type="search" id="admin-user-search" name="admin_user_filter" class="search-input" placeholder="Search user by name, phone, or email..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+                </div>
+
+                <!-- Users List Container -->
+                <div id="admin-users-page-list">
+                    <!-- Loaded dynamically via admin.js -->
+                </div>
+            </section>
+
+            <!-- VIEW 5: USER PROFILE & AUTH -->
+            <section id="view-profile" class="view-section">
+                <div style="margin-bottom: 16px;">
+                    <span style="font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-gold);">MEMBERSHIP & ACCOUNT</span>
+                    <h2 style="font-family: var(--font-heading); font-size: 22px; font-weight: 900; text-transform: uppercase;">BAKERY CLUB PROFILE</h2>
+                </div>
+
+                <div id="profile-content-area">
+                    <!-- Loaded dynamically via app.js -->
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Android Bottom Navigation Bar (Role-Aware) -->
+        <nav class="android-nav-bar">
+            <!-- Customer Tabs (Shop & Hot Bag) -->
+            <button class="nav-item nav-customer active" data-tab="shop">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span>Shop</span>
+            </button>
+            <button class="nav-item nav-customer" data-tab="bag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                <span>Hot Bag</span>
+                <span id="nav-bag-badge" class="nav-badge" style="display: none;">0</span>
+            </button>
+
+            <!-- Admin Tabs (Strictly: Admin, Stock, Users, Account) -->
+            <button id="nav-admin-btn" class="nav-item nav-admin" data-tab="admin" style="display: none;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                <span>Admin</span>
+            </button>
+            <button id="nav-stock-btn" class="nav-item nav-admin" data-tab="stock" style="display: none;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                <span>Stock</span>
+            </button>
+            <button id="nav-users-btn" class="nav-item nav-admin" data-tab="users" style="display: none;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <span>Users</span>
+            </button>
+
+            <!-- Account Tab (Shared) -->
+            <button class="nav-item" data-tab="profile">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <span id="nav-profile-label">Account</span>
+            </button>
+        </nav>
+
+        <!-- Mandatory Sign-In / Registration Gate Overlay (Triggered if user is not logged in) -->
+        <div id="auth-gate-modal" class="auth-gate-overlay" style="display: none;">
+            <div class="auth-gate-card">
+                <div style="text-align: center; margin-bottom: 18px;">
+                    <span style="font-size: 9px; letter-spacing: 3px; text-transform: uppercase; font-weight: 800; color: var(--accent-gold);">MEMBERS ONLY // DROP 01</span>
+                    <h2 style="font-family: var(--font-heading); font-size: 24px; font-weight: 900; text-transform: uppercase; color: #fff; margin-top: 4px;" id="gate-main-heading">SIGN IN TO ENTER</h2>
+                    <p style="font-size: 12px; color: var(--text-secondary); margin-top: 6px;" id="gate-main-subtext">Sign in with your registered Email to browse fresh bakery drops & place orders.</p>
+                </div>
+
+                <!-- Auth Mode Switcher -->
+                <div class="auth-toggle-tabs" id="gate-tabs-wrapper">
+                    <button id="gate-tab-login" class="auth-toggle-btn active" onclick="App.switchGateTab('login')">Sign In</button>
+                    <button id="gate-tab-register" class="auth-toggle-btn" onclick="App.switchGateTab('register')">Create Account</button>
+                </div>
+
+                <!-- Form: Sign In (Mandatory Email) -->
+                <div id="gate-login-section">
+                    <div class="form-group">
+                        <label class="form-label">Registered Email Address <span class="req">*</span></label>
+                        <input type="email" id="gate-login-email" class="form-input" placeholder="e.g. reddirohit2005@gmail.com" autocomplete="email" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password <span class="req">*</span></label>
+                        <input type="password" id="gate-login-pass" class="form-input" placeholder="Enter your password" />
+                    </div>
+                    <button class="btn-primary" onclick="App.handleGateLogin()" style="margin-top: 6px;">
+                        ENTER BAKERY APP &rarr;
+                    </button>
+                </div>
+
+                <!-- Form: Create Account with Email OTP Verification -->
+                <div id="gate-register-section" style="display: none;">
+                    
+                    <!-- Step 1: User Details Form -->
+                    <div id="gate-reg-step-details">
+                        <div class="form-group">
+                            <label class="form-label">Full Name <span class="req">*</span></label>
+                            <input type="text" id="gate-reg-name" class="form-input" placeholder="e.g. Jessica Miller" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email Address <span class="req">*</span> <span style="font-size: 10px; color: var(--accent-gold);">(OTP will be sent here)</span></label>
+                            <input type="email" id="gate-reg-email" class="form-input" placeholder="e.g. jessica@example.com" autocomplete="email" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone Number <span style="font-size: 10px; color: var(--text-secondary);">(Optional)</span></label>
+                            <input type="tel" id="gate-reg-phone" class="form-input" placeholder="e.g. 9876543210" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Password <span class="req">*</span></label>
+                            <input type="password" id="gate-reg-pass" class="form-input" placeholder="Create strong password (min 4 chars)" />
+                        </div>
+                        <button id="gate-btn-send-otp" class="btn-primary" onclick="App.handleSendRegOtp()" style="margin-top: 6px;">
+                            SEND OTP & VERIFY EMAIL &rarr;
+                        </button>
+                    </div>
+
+                    <!-- Step 2: 6-Digit Email OTP Verification Screen -->
+                    <div id="gate-reg-step-otp" style="display: none;">
+                        <div style="background: rgba(217, 119, 6, 0.08); border: 1px solid rgba(217, 119, 6, 0.3); border-radius: 8px; padding: 12px 14px; margin-bottom: 16px; text-align: center;">
+                            <span style="font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent-gold);">🔐 EMAIL VERIFICATION CODE</span>
+                            <div style="font-size: 12px; color: #ddd; margin-top: 6px; line-height: 1.5;">
+                                A 6-digit OTP code has been dispatched to:
+                                <div id="gate-otp-target-display" style="color: #fff; font-weight: 700; margin-top: 2px; font-size: 13px;">user@example.com</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="text-align: center;">
+                            <label class="form-label" style="text-align: center; display: block; margin-bottom: 8px;">
+                                Enter 6-Digit OTP Code <span class="req">*</span>
+                            </label>
+                            <input type="text" id="gate-reg-otp" class="form-input otp-digit-input" maxlength="6" inputmode="numeric" placeholder="------" autocomplete="one-time-code" />
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0 16px 0; font-size: 12px;">
+                            <span id="gate-otp-timer-text" style="color: var(--text-secondary);">
+                                Resend code in <strong id="gate-otp-seconds" style="color: var(--accent-gold);">60</strong>s
+                            </span>
+                            <button id="gate-otp-resend-btn" type="button" onclick="App.handleResendRegOtp()" style="display: none; background: none; border: none; color: var(--accent-gold); font-weight: 700; cursor: pointer; text-decoration: underline; font-size: 12px;">
+                                Resend OTP Code
+                            </button>
+                        </div>
+
+                        <button id="gate-btn-verify-otp" class="btn-primary" onclick="App.handleVerifyRegOtp()">
+                            VERIFY OTP & ENTER BAKERY &rarr;
+                        </button>
+
+                        <button type="button" onclick="App.switchRegStep('details')" style="width: 100%; margin-top: 12px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 12px; text-decoration: underline;">
+                            &larr; Back to edit email or details
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Details Pop-Up Modal (Pops on Card Click) -->
+        <div id="modal-product-detail" class="modal-overlay" onclick="App.closeProductModal(event)">
+            <div class="product-pop-card" onclick="event.stopPropagation()">
+                <button class="pop-close-btn" onclick="App.closeProductModal()">✕</button>
+                <div class="pop-badge-row">
+                    <span id="pop-cat" class="product-cat-label">CATEGORY</span>
+                    <span id="pop-badge" class="product-badge hot">FRESH BAKE</span>
+                </div>
+                <h2 id="pop-title" class="pop-title">Product Name</h2>
+                <p id="pop-desc" class="pop-desc">Artisan description</p>
+
+                <div class="pop-fresh-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <div>
+                        <strong style="color: #fff; font-size: 12px; display: block;">Baked Fresh Daily</strong>
+                        <span style="font-size: 11px; color: var(--text-secondary);">100% natural slow fermentation, pure butter.</span>
+                    </div>
+                </div>
+
+                <div class="pop-price-row">
+                    <div>
+                        <div style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Price</div>
+                        <div id="pop-price" class="pop-price">₹0.00</div>
+                    </div>
+                    <div class="pop-stepper">
+                        <button class="stepper-btn" onclick="App.stepPopQty(-1)">-</button>
+                        <span id="pop-qty" class="stepper-val">1</span>
+                        <button class="stepper-btn" onclick="App.stepPopQty(1)">+</button>
+                    </div>
+                </div>
+
+                <button id="pop-add-btn" class="btn-primary" onclick="App.addFromModal()">
+                    ADD TO HOT BAG
+                </button>
+            </div>
+        </div>
+
+        <!-- Bottom Sheet Modal: Hot Bag (Cart) -->
+        <div id="sheet-overlay" class="sheet-overlay" onclick="App.closeSheets()"></div>
+
+        <div id="sheet-bag" class="bottom-sheet">
+            <div class="sheet-handle"></div>
+            <div class="sheet-header">
+                <div class="sheet-title">YOUR HOT BAG</div>
+                <button class="sheet-close-btn" onclick="App.closeSheets()">✕</button>
+            </div>
+            <div class="sheet-body">
+                <div id="bag-items-list">
+                    <!-- Items injected dynamically -->
+                </div>
+            </div>
+            <div class="sheet-footer">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--text-muted);">Estimated Subtotal</span>
+                    <span id="bag-total-amount" style="font-family: var(--font-heading); font-size: 22px; font-weight: 800; color: var(--accent-gold-light);">₹0.00</span>
+                </div>
+                <button id="btn-bag-checkout" class="btn-primary" onclick="App.openCheckoutModal()">
+                    PROCEED TO ADDRESS &rarr;
+                </button>
+            </div>
+        </div>
+
+        <!-- Bottom Sheet Modal: Strictly Mandatory Delivery Address Form (No Payment Required) -->
+        <div id="sheet-checkout" class="bottom-sheet">
+            <div class="sheet-handle"></div>
+            <div class="sheet-header">
+                <div>
+                    <span style="font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-gold); font-weight: 800;">STEP 2 // DELIVERY DETAILS</span>
+                    <div class="sheet-title">MANDATORY ADDRESS</div>
+                </div>
+                <button class="sheet-close-btn" onclick="App.closeSheets()">✕</button>
+            </div>
+            <div class="sheet-body">
+                <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 16px; line-height: 1.4;">
+                    No online payment required. Orders are prepared fresh upon delivery confirmation. <strong>All address fields below are mandatory</strong>.
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Full Name <span class="req">*</span></label>
+                    <input type="text" id="input-addr-name" class="form-input" placeholder="e.g. Sarah Jenkins" required />
+                    <div id="err-input-addr-name" class="field-error-msg"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Phone Number <span class="req">*</span></label>
+                    <input type="tel" id="input-addr-phone" class="form-input" placeholder="e.g. 9876543210 (10 digits)" required />
+                    <div id="err-input-addr-phone" class="field-error-msg"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Street Address & Landmark <span class="req">*</span></label>
+                    <input type="text" id="input-addr-street" class="form-input" placeholder="House/Flat No., Street, Building" required />
+                    <div id="err-input-addr-street" class="field-error-msg"></div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 10px;">
+                    <div class="form-group">
+                        <label class="form-label">City <span class="req">*</span></label>
+                        <input type="text" id="input-addr-city" class="form-input" placeholder="e.g. Bengaluru" required />
+                        <div id="err-input-addr-city" class="field-error-msg"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Pincode / ZIP <span class="req">*</span></label>
+                        <input type="text" id="input-addr-pincode" class="form-input" placeholder="e.g. 560001" required />
+                        <div id="err-input-addr-pincode" class="field-error-msg"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="sheet-footer">
+                <button id="btn-confirm-order" class="btn-primary">
+                    CONFIRM & PLACE BAKE ORDER
+                </button>
+            </div>
+        </div>
+
+        <!-- Bottom Sheet Modal: Order Placed Success with Unique Order ID -->
+        <div id="sheet-success" class="bottom-sheet">
+            <div class="sheet-handle"></div>
+            <div class="sheet-header">
+                <div class="sheet-title">ORDER DISPATCHED</div>
+                <button class="sheet-close-btn" onclick="App.closeSheets()">✕</button>
+            </div>
+            <div class="sheet-body">
+                <div class="success-card">
+                    <div class="success-icon-box">
+                        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <h3 class="success-title">BAKE ORDER CONFIRMED!</h3>
+                    <p style="font-size: 13px; color: var(--text-secondary);">Your artisan batch is being prepared in the oven.</p>
+                    
+                    <div style="margin: 18px 0;">
+                        <div style="font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-gold); margin-bottom: 4px;">YOUR UNIQUE ORDER ID</div>
+                        <div id="success-order-id" class="order-id-badge">BKR-XXXX-XXXX</div>
+                    </div>
+
+                    <div id="success-order-summary" class="delivery-summary">
+                        <!-- Summary injected dynamically -->
+                    </div>
+                </div>
+            </div>
+            <div class="sheet-footer">
+                <button class="btn-primary" onclick="App.closeSheets(); App.switchTab('shop');">
+                    CONTINUE BROWSING BAKES
+                </button>
+            </div>
+        </div>
+
+        <!-- Bottom Sheet Modal: Item-Specific Out of Stock Selector -->
+        <div id="sheet-out-of-stock" class="bottom-sheet">
+            <div class="sheet-handle"></div>
+            <div class="sheet-header">
+                <div>
+                    <span style="font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-red); font-weight: 800;">ORDER STOCK CONTROL</span>
+                    <div class="sheet-title" style="color: var(--accent-red);">SELECT OUT OF STOCK ITEMS</div>
+                </div>
+                <button class="sheet-close-btn" onclick="AdminManager.closeOutOfStockModal()">✕</button>
+            </div>
+            <div class="sheet-body">
+                <div style="background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.3); padding: 12px; border-radius: var(--radius-sm); margin-bottom: 14px;">
+                    <div id="oos-modal-order-meta" style="font-family: var(--font-heading); font-size: 13px; font-weight: 800; color: #fff; margin-bottom: 4px;">Order #BKR-...</div>
+                    <div style="font-size: 11.5px; color: #e6ded8; line-height: 1.45;">
+                        Check which bakery items from this customer's order are unavailable. Confirming will set this order to <strong>Out of Stock</strong> and automatically update each selected item's stock in the store to <strong>0 (OUT OF STOCK)</strong>.
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.5px;">Order Line Items</span>
+                    <button id="oos-btn-toggle-all" class="btn-oos-toggle-all" onclick="AdminManager.toggleSelectAllOOS()">Select All</button>
+                </div>
+
+                <div id="oos-items-checklist" class="oos-items-list">
+                    <!-- Populated dynamically via AdminManager.openOutOfStockModal -->
+                </div>
+            </div>
+            <div class="sheet-footer" style="display: flex; gap: 10px;">
+                <button class="btn-secondary" style="flex: 1;" onclick="AdminManager.closeOutOfStockModal()">
+                    CANCEL
+                </button>
+                <button id="oos-btn-confirm" class="btn-danger-confirm" style="flex: 2;" onclick="AdminManager.confirmOutOfStock()">
+                    CONFIRM OUT OF STOCK &rarr;
+                </button>
+            </div>
+        </div>
+
+        <!-- Floating Toast Notification System -->
+        <div id="toast-container" class="toast-container"></div>
+
+    </div>
+</div>
+
+<script src="/js/api.js"></script>
+<script src="/js/admin.js"></script>
+<script src="/js/app.js"></script>
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW registration error:', err));
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,378 @@
+{
+  "users": [
+    {
+      "_id": "user_admin",
+      "name": "Store Admin",
+      "email": "admin@bakery.com",
+      "password": "scrypt:32768:8:1$IQ8gZlmvb2HaiCKt$b6c372e9a55a27cbac75c767682e5504e957ccab9ac5be0a67f5d3af181f8704ad1165657d4c6b33602c6fcd6f9612fe267b1eaab1778ad188725d9f03499765",
+      "phone": "9999999999",
+      "role": "admin",
+      "addresses": [],
+      "orders": [],
+      "created_at": "2026-09-15T17:22:54.552419",
+      "is_admin": true
+    },
+    {
+      "_id": "user_demo",
+      "name": "Sarah Jenkins",
+      "email": "customer@bakery.com",
+      "password": "scrypt:32768:8:1$RhKOnvdjTDMU6q3p$67cc9758f9bd56988e0e11991e13298ebc392bd3e887a088192fe231cf053c0e63e0f0d6943b02a82ade762e5a6eba92306688acff40772f06e690e92c9dfaa2",
+      "phone": "9876543210",
+      "role": "user",
+      "addresses": [
+        {
+          "fullName": "Sarah Jenkins",
+          "phone": "9123456780",
+          "street": "42 Artisan Bakery Lane, Apt 3B",
+          "city": "Metropolis",
+          "pincode": "560001"
+        }
+      ],
+      "orders": [
+        "BKR-260915-J0BR"
+      ],
+      "created_at": "2026-09-15T17:22:54.759221",
+      "is_admin": false,
+      "last_address": {
+        "fullName": "Sarah Jenkins",
+        "phone": "9876543210",
+        "street": "42 Artisan Bakery Lane, Apt 3B",
+        "city": "Metropolis",
+        "pincode": "560001",
+        "landmark": ""
+      }
+    },
+    {
+      "_id": "user_1789475753295",
+      "name": "Rohan Sharma",
+      "phone": "9741234567",
+      "email": "",
+      "password": "scrypt:32768:8:1$W5KzAdpfgSscz7lX$fca99cdcc39392ea910a0fd090f7115487f641418728fbcbcd7b2b7235d9cacedfd2ea315b57f8b0a8c95ea8338a2804e41ae713865d92033db80e803c61e1f7",
+      "role": "user",
+      "is_admin": false,
+      "addresses": [],
+      "orders": [],
+      "created_at": "2026-09-15T18:05:53.417033"
+    }
+  ],
+  "products": [
+    {
+      "_id": "prod_1",
+      "name": "Wild Sourdough Boule",
+      "category": "Sourdough & Breads",
+      "price": 280.0,
+      "stock": 9,
+      "description": "24-hour slow cold fermentation with crisp blistered crust and open airy crumb.",
+      "image": "",
+      "badge": "FRESH BAKE",
+      "is_available": true,
+      "created_at": "2026-09-15T17:21:26.620007"
+    },
+    {
+      "_id": "prod_2",
+      "name": "Golden Butter Croissant",
+      "category": "Viennoiserie",
+      "price": 160.0,
+      "stock": 25,
+      "description": "Laminated pastry with 100% French Normandy butter, honey-comb interior.",
+      "image": "",
+      "badge": "POPULAR",
+      "is_available": true,
+      "created_at": "2026-09-15T17:21:26.621012"
+    },
+    {
+      "_id": "prod_3",
+      "name": "Dark Chocolate Pain Au Chocolat",
+      "category": "Viennoiserie",
+      "price": 190.0,
+      "stock": 17,
+      "description": "Double batons of 70% Valrhona dark chocolate folded into crisp buttery layers.",
+      "image": "",
+      "badge": "CHEF SPECIAL",
+      "is_available": true,
+      "created_at": "2026-09-15T17:21:26.621012"
+    },
+    {
+      "_id": "prod_4",
+      "name": "Cinnamon Brioche Roll",
+      "category": "Viennoiserie",
+      "price": 150.0,
+      "stock": 11,
+      "description": "Rich egg brioche rolled with Ceylon cinnamon and finished with vanilla cream glaze.",
+      "image": "",
+      "badge": "FRESH BAKE",
+      "is_available": true,
+      "created_at": "2026-09-15T17:21:26.621012"
+    },
+    {
+      "_id": "prod_5",
+      "name": "Caramelized Onion & Cheese Focaccia",
+      "category": "Savory & Specials",
+      "price": 240.0,
+      "stock": 7,
+      "description": "High-hydration extra virgin olive oil dough topped with slow sweet onions and aged Gruyere.",
+      "image": "",
+      "badge": "HOT BAKE",
+      "is_available": true,
+      "created_at": "2026-09-15T17:21:26.621012"
+    },
+    {
+      "_id": "prod_6",
+      "name": "Midnight Chocolate Fudge Cake",
+      "category": "Artisan Cakes",
+      "price": 220.0,
+      "stock": 9,
+      "description": "Triple-layer Valrhona fudge cake with glossy mirror ganache and dark cocoa nibs.",
+      "image": "",
+      "badge": "BEST SELLER",
+      "is_available": true,
+      "created_at": "2026-09-15T17:21:26.621012"
+    },
+    {
+      "_id": "prod_7",
+      "name": "Pistachio Raspberry Tart",
+      "category": "Artisan Cakes",
+      "price": 260.0,
+      "stock": 14,
+      "description": "Almond p\u00e2te sabl\u00e9e filled with roasted pistachio frangipane and fresh tart raspberries.",
+      "image": "",
+      "badge": "CHEF SPECIAL",
+      "is_available": true,
+      "created_at": "2026-09-15T17:21:26.621012"
+    },
+    {
+      "_id": "prod_8",
+      "name": "Matcha White Chocolate Cookie",
+      "category": "Savory & Specials",
+      "price": 120.0,
+      "stock": 30,
+      "description": "Uji ceremonial matcha cookie dough studded with Belgian white chocolate chunks and sea salt.",
+      "image": "",
+      "badge": "POPULAR",
+      "is_available": true,
+      "created_at": "2026-09-15T17:21:26.621012"
+    }
+  ],
+  "orders": [
+    {
+      "_id": "BKR-260915-EQ31",
+      "order_id": "BKR-260915-EQ31",
+      "userId": null,
+      "items": [
+        {
+          "productId": "prod_1",
+          "name": "Wild Sourdough Boule",
+          "price": 8.5,
+          "quantity": 2,
+          "subtotal": 17.0,
+          "image": ""
+        }
+      ],
+      "total_amount": 17.0,
+      "shipping_address": {
+        "fullName": "Alice Baker",
+        "phone": "9876543210",
+        "street": "742 Evergreen Terrace",
+        "city": "Springfield",
+        "pincode": "12345",
+        "landmark": ""
+      },
+      "payment_method": "Pay on Delivery / Hot Bag Confirm",
+      "status": "In Progress",
+      "created_at": "2026-09-15T17:28:20.644503"
+    },
+    {
+      "_id": "BKR-260915-GNNE",
+      "order_id": "BKR-260915-GNNE",
+      "userId": null,
+      "items": [
+        {
+          "productId": "prod_2",
+          "name": "Golden Butter Croissant",
+          "price": 160.0,
+          "quantity": 2,
+          "subtotal": 320.0,
+          "image": ""
+        },
+        {
+          "productId": "prod_6",
+          "name": "Midnight Chocolate Fudge Cake",
+          "price": 220.0,
+          "quantity": 1,
+          "subtotal": 220.0,
+          "image": ""
+        }
+      ],
+      "total_amount": 540.0,
+      "shipping_address": {
+        "fullName": "Rohan Sharma",
+        "phone": "9741234567",
+        "street": "14 Koramangala 4th Block",
+        "city": "Bengaluru",
+        "pincode": "560034",
+        "landmark": ""
+      },
+      "payment_method": "Pay on Delivery / Hot Bag Confirm",
+      "status": "Finished",
+      "created_at": "2026-09-15T18:24:51.183007"
+    },
+    {
+      "_id": "BKR-260915-J0BR",
+      "order_id": "BKR-260915-J0BR",
+      "userId": "user_demo",
+      "items": [
+        {
+          "productId": "prod_3",
+          "name": "Dark Chocolate Pain Au Chocolat",
+          "price": 190.0,
+          "quantity": 1,
+          "subtotal": 190.0,
+          "image": ""
+        },
+        {
+          "productId": "prod_4",
+          "name": "Cinnamon Brioche Roll",
+          "price": 150.0,
+          "quantity": 1,
+          "subtotal": 150.0,
+          "image": ""
+        },
+        {
+          "productId": "prod_5",
+          "name": "Caramelized Onion & Cheese Focaccia",
+          "price": 240.0,
+          "quantity": 1,
+          "subtotal": 240.0,
+          "image": ""
+        }
+      ],
+      "total_amount": 580.0,
+      "shipping_address": {
+        "fullName": "Sarah Jenkins",
+        "phone": "9876543210",
+        "street": "42 Artisan Bakery Lane, Apt 3B",
+        "city": "Metropolis",
+        "pincode": "560001",
+        "landmark": ""
+      },
+      "payment_method": "Pay on Delivery / Hot Bag Confirm",
+      "status": "Finished",
+      "created_at": "2026-09-15T18:26:19.884761"
+    },
+    {
+      "_id": "BKR-260915-Z6EK",
+      "order_id": "BKR-260915-Z6EK",
+      "userId": null,
+      "items": [
+        {
+          "productId": "prod_2",
+          "name": "Golden Butter Croissant",
+          "price": 160.0,
+          "quantity": 2,
+          "subtotal": 320.0,
+          "image": ""
+        },
+        {
+          "productId": "prod_1",
+          "name": "Wild Sourdough Boule",
+          "price": 280.0,
+          "quantity": 1,
+          "subtotal": 280.0,
+          "image": ""
+        }
+      ],
+      "total_amount": 600.0,
+      "shipping_address": {
+        "fullName": "Priya Sharma",
+        "phone": "9876543210",
+        "street": "14 Indiranagar 100ft Rd",
+        "city": "Bengaluru",
+        "pincode": "560038",
+        "landmark": ""
+      },
+      "payment_method": "Pay on Delivery / Fresh Bake Confirm",
+      "status": "Finished",
+      "created_at": "2026-09-15T19:24:22.075719",
+      "out_of_stock_items": [
+        "Golden Butter Croissant",
+        "Wild Sourdough Boule"
+      ]
+    },
+    {
+      "_id": "BKR-260915-AVRF",
+      "order_id": "BKR-260915-AVRF",
+      "userId": null,
+      "items": [
+        {
+          "productId": "prod_2",
+          "name": "Golden Butter Croissant",
+          "price": 160.0,
+          "quantity": 2,
+          "subtotal": 320.0,
+          "image": ""
+        },
+        {
+          "productId": "prod_1",
+          "name": "Wild Sourdough Boule",
+          "price": 280.0,
+          "quantity": 1,
+          "subtotal": 280.0,
+          "image": ""
+        }
+      ],
+      "total_amount": 600.0,
+      "shipping_address": {
+        "fullName": "Priya Sharma",
+        "phone": "9876543210",
+        "street": "14 Indiranagar 100ft Rd",
+        "city": "Bengaluru",
+        "pincode": "560038",
+        "landmark": ""
+      },
+      "payment_method": "Pay on Delivery / Fresh Bake Confirm",
+      "status": "In Progress",
+      "created_at": "2026-09-15T19:25:54.034631",
+      "out_of_stock_items": [
+        "Golden Butter Croissant"
+      ]
+    },
+    {
+      "_id": "BKR-260915-VLEK",
+      "order_id": "BKR-260915-VLEK",
+      "userId": null,
+      "items": [
+        {
+          "productId": "prod_2",
+          "name": "Golden Butter Croissant",
+          "price": 160.0,
+          "quantity": 2,
+          "subtotal": 320.0,
+          "image": ""
+        },
+        {
+          "productId": "prod_1",
+          "name": "Wild Sourdough Boule",
+          "price": 280.0,
+          "quantity": 1,
+          "subtotal": 280.0,
+          "image": ""
+        }
+      ],
+      "total_amount": 600.0,
+      "shipping_address": {
+        "fullName": "Priya Sharma",
+        "phone": "9876543210",
+        "street": "14 Indiranagar 100ft Rd",
+        "city": "Bengaluru",
+        "pincode": "560038",
+        "landmark": ""
+      },
+      "payment_method": "Pay on Delivery / Fresh Bake Confirm",
+      "status": "Finished",
+      "created_at": "2026-09-15T19:44:11.453327",
+      "out_of_stock_items": [
+        "Golden Butter Croissant"
+      ]
+    }
+  ]
+}
