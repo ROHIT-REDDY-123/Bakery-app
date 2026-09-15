@@ -1,24 +1,58 @@
 {
+  "id": "/?source=pwa",
   "name": "The Artisan Drop - Farm Fresh Bakery",
   "short_name": "Artisan Bakery",
   "description": "Artisanal Sourdough & Farm-Fresh Bakery E-Commerce Store",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#0c0b0a",
   "theme_color": "#d97706",
   "orientation": "portrait",
+  "categories": [
+    "shopping",
+    "food"
+  ],
   "icons": [
     {
-      "src": "/img/croissant.png",
+      "src": "/images/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "/img/croissant.png",
+      "src": "/images/icon-maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/images/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/images/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/images/screenshot-mobile.png",
+      "sizes": "540x960",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Mobile Storefront"
+    },
+    {
+      "src": "/images/screenshot-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Desktop Storefront"
     }
   ]
 }
